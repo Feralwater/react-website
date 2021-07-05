@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
-import style from './Navbar.module.scss'
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBars, faMapMarked, faTimes} from "@fortawesome/free-solid-svg-icons";
+import {Button} from "./Button";
+import './Navbar.scss'
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
   const logoIcon = <FontAwesomeIcon icon={faMapMarked}/>
   const timesIcon = <FontAwesomeIcon icon={faTimes}/>
   const barsIcon = <FontAwesomeIcon icon={faBars}/>
@@ -13,39 +15,56 @@ const Navbar = () => {
   const handleClick = () => setClick(!click)
   const closeMobileMenu = () => setClick(false)
 
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false)
+    } else {
+      setButton(true)
+    }
+  };
+
+  useEffect(() => {
+    showButton()
+  }, [])
+
+
+  window.addEventListener('resize', showButton);
 
   return (
     <>
-      <nav className={style.navbar}>
-        <div className={style.navbar__container}>
-          <Link to="/" className={style.navbar__logo}>
-            TRVL {logoIcon}
+      <nav className='navbar'>
+        <div className='navbar-container'>
+          <Link to="/" className='navbar-logo'
+                onClick={closeMobileMenu}
+          >
+            TRVL{logoIcon}
           </Link>
-          <div className={style.menu__icon} onClick={handleClick}>
+          <div className='menu-icon' onClick={handleClick}>
             {click ? timesIcon : barsIcon}
           </div>
-          <ul className={click ? style.nav__menu + style.active : style.nav__menu}>
-            <li className={style.nav__item}>
-              <Link to='/' className={style.nav__links} onClick={closeMobileMenu}>
+          <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <li className='nav-item'>
+              <Link to='/' className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
-            <li className={style.nav__item}>
-              <Link to='/services' className={style.nav__links} onClick={closeMobileMenu}>
+            <li className='nav-item'>
+              <Link to='/services' className='nav-links' onClick={closeMobileMenu}>
                 Services
               </Link>
             </li>
-            <li className={style.nav__item}>
-              <Link to='/products' className={style.nav__links} onClick={closeMobileMenu}>
+            <li className='nav-item'>
+              <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
                 Products
               </Link>
             </li>
-            <li className={style.nav__item}>
-              <Link to='/sign-up' className={style.nav__links_mobile} onClick={closeMobileMenu}>
+            <li className='nav-item'>
+              <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
                 Sign-Up
               </Link>
             </li>
           </ul>
+          {button && <Button buttonStyle='btn--outline'>sign up</Button>}
         </div>
       </nav>
     </>
