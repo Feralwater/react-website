@@ -16,6 +16,7 @@
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "node-sass": "^6.0.0",
     "sass-loader": "^12.0.0"
   },
