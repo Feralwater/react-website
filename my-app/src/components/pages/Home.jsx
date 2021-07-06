@@ -1,14 +1,14 @@
 import React from 'react';
-import HeroSection from "../HeroSection";
-import Cards from "../Cards";
-import Footer from "../Footer";
+import HeroSection from '../HeroSection';
+import Cards from '../Cards';
+import Footer from '../Footer';
 
-function Home(props) {
+function Home() {
   return (
     <>
-      <HeroSection/>
-      <Cards/>
-      <Footer/>
+      <HeroSection />
+      <Cards />
+      <Footer />
     </>
   );
 }

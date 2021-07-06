@@ -64,7 +64,9 @@
 .menu-icon {
   display: none;
 }
-
+.logo-icon{
+  margin: 0 0 5px 15px;
+}
 @media screen and (max-width: 960px) {
   .NavbarItems {
     position: relative;
@@ -118,6 +120,7 @@
     transform: translate(-100%, 60%);
     font-size: 1.8rem;
     cursor: pointer;
+    color: #ffffff;
   }
 
   .fa-times {
